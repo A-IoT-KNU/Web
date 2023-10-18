@@ -1,0 +1,58 @@
+{
+  "Register": "Register",
+  "Login": "Login",
+  "AboutPlatform": "About the platform",
+  "Welcome": "Welcome to the Future of Property Monitoring!",
+  "PropertyOwn": "Are you a property owner looking to stay in control of your real estate's climate conditions? Look no further.Our IoT Platform is here to revolutionize the way you monitor your property, providing you with real-time data on crucial metrics like temperature, humidity, atmospheric pressure, lighting, and air quality.",
+  "Breeze": "Getting Started is a Breeze!",
+  "FollowSteps": "Follow these simple steps to unlock the power of our Platform:",
+  "BeginJourney":"Begin your journey by registering your account. It's quick and easy! Just provide your details, and you'll be on your way to monitoring your property's climate conditions.",
+  "OnceReg":"Once registered, log in to your account securely. Your personalized dashboard awaits!",
+  "AddNewLoc":"Add a New Location (and Room, Optionally)",
+  "SetUpStructure":"Set up your property's structure by adding locations and rooms. This step allows you to organize and monitor climate conditions efficiently. If you prefer a straightforward approach, skip to the next step.",
+  "AddNewSens": "Add Sensors",
+  "ItsTime":"It's time to connect your property to our IoT Platform. Add sensors to your locations and rooms. Our platform supports a wide range of sensor types, ensuring you get the data you need. Configure them to start collecting real-time data.",
+  "ViewDashboard": "View Dashboard",
+  "TextDashboard": "Now, the magic happens. Access your personalized dashboard, where you'll find all the data you need at your fingertips. Monitor temperature, humidity, atmospheric pressure, lighting, air quality, and more, all in one place.",
+  "FewClick": "It's as simple as that! With just a few clicks, you'll be on your way to gaining valuable insights into your property's climate conditions.",
+  "TakeControl": "Take control, stay informed, and make data-driven decisions with ease.",
+  "ReadyStart": "Ready to get started? Register now and unlock the potential of our IoT Platform!",
+  "WhyIOT": "Why Choose Our IoT Platform?",
+  "Real-timeData":{
+    "h": "Real-time Data",
+    "p":"Our platform doesn't just provide current sensor readings; it offers a window into your property's past. Access historical data effortlessly, enabling you to analyze metric fluctuations over extended periods."
+  },
+  "ComprehensiveSensor":{
+    "h": "Comprehensive Sensor Integration",
+    "p": " Unlike other IoT services, we provide the seamless integration a variety of sensors, including complex measurement instruments. We go beyond tracking mere temperature and humidity. With us, you gain a 360-degree view of your property's environment, monitoring factors like atmospheric pressure, lighting conditions, and air quality."
+  },
+  "AirQuality": {
+    "h": "Advanced Air Quality Monitoring",
+    "p": "Our platform stands out by providing you with six essential air quality metrics: Carbon monoxide, Ozone, Nitrogen dioxide, Sulfur dioxide, PM2.5, and PM10 particles. Breathe easy knowing you have a clear picture of the air you breathe."
+  },
+  "Flexibility": {
+    "h": "Flexibility in Sensors Placement",
+    "p": "Tailor the placement of your sensors to suit your property's unique needs. Whether it's different locations or specific rooms, our platform allows you to adapt to environmental changes and understand your property's climate conditions from every angle."
+  },
+  "InWorld":"In a world where precision and control matter more than ever, our IoT Platform is your dependable choice for property monitoring. Say goodbye to uncertainty and hello to real-time insights. Join us on the journey to a smarter, safer, and more informed property ownership experience.Are you ready to take control of your property's climate conditions? Get started today!"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

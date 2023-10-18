@@ -1,0 +1,14 @@
+<div class="btn-Lang">
+  <button (click)="toggleLanguages()" *ngIf="!showLanguages" >
+    <img [src]="currentLanguage === 'en' ? 'assets/img/united-kingdom-flag.png' : 'assets/img/ukraine-flag.png'"
+         alt="Language">
+  </button>
+  <div *ngIf="showLanguages">
+    <button (click)="setLanguage('en')">
+      <img alt="English" src="assets/img/united-kingdom-flag.png">
+    </button>
+    <button (click)="setLanguage('ua')">
+      <img alt="Ukrainian" src="assets/img/ukraine-flag.png" height="15" width="20">
+    </button>
+  </div>
+</div>

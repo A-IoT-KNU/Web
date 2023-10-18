@@ -1,0 +1,13 @@
+.btn-Lang {
+  position: absolute;
+  right: 0;
+  top: 50%;
+}
+
+.btn-Lang button {
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+
+}
