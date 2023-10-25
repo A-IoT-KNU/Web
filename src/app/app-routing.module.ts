@@ -1,16 +1,15 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 import {HomeComponent} from "./components/features/pages/home/home.component";
-// import {ProfileComponent} from "./components/profile/profile.component";
-// import {DashboardComponent} from "./components/dashboard/dashboard.component";
-// import {MainHeaderComponent} from "./components/main-header/main-header.component";
+import {ProfileComponent} from "./components/features/pages/profile/profile.component";
+import {DashboardComponent} from "./components/features/pages/dashboard/dashboard.component";
+import {AuthGuard} from "./services/app.guard";
 
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  // {path: 'profile', component: ProfileComponent},
-  // {path: 'dashboard', component: DashboardComponent},
-  // {path: 'header', component: MainHeaderComponent}
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

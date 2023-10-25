@@ -1,0 +1,47 @@
+<button class="btnClose" mat-dialog-close>
+  <img alt="Close" src="assets/img/BtnClose.svg">
+</button>
+<div class="wrapper text-center">
+
+  <h2>Новий сенсор</h2>
+
+  <div class="dropdown">
+    <h5>Тип сенсора</h5>
+    <button aria-expanded="true" aria-haspopup="true" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+            type="button">
+      {{selectedSensor}}
+    </button>
+    <div aria-labelledby="dropdownMenuButton" class="dropdown-menu">
+      <a (click)="handleItemClick(typeOfSensor.value,0)" *ngFor="let typeOfSensor of typeOfSensors"
+         class="dropdown-item">{{typeOfSensor.value}}</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <h5>Локація</h5>
+    <button aria-expanded="false" aria-haspopup="true" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+            type="button">
+      {{selectedLocation}}
+    </button>
+    <div aria-labelledby="dropdownMenuButton" class="dropdown-menu">
+      <a (click)="handleItemClick(location.value,1)" *ngFor="let location of locations"
+         class="dropdown-item">{{location.value}}</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <h5>Кімната</h5>
+    <button aria-expanded="false" aria-haspopup="true" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+            type="button">
+      {{selectedRoom}}
+    </button>
+    <div aria-labelledby="dropdownMenuButton" class="dropdown-menu">
+      <a (click)="handleItemClick(room.value,2)" *ngFor="let room of rooms" class="dropdown-item">{{room.value}}</a>
+    </div>
+  </div>
+  <p>
+    <button mat-dialog-close class="btn btn-warning" (click)="addSensor()">Додати</button>
+  </p>
+
+</div>
+

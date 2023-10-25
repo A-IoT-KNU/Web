@@ -1,0 +1,191 @@
+.mainHeader {
+  width: 100%;
+  min-height: 100%;
+  background: linear-gradient(71deg, #FFF5DC -0.03%, rgba(255, 245, 220, 0.00) 100.03%);
+}
+
+.head {
+  border-bottom: 1px dashed black;
+}
+
+.navHead {
+  display: flex;
+  align-items: center;
+  height: 100px;
+}
+
+.btnLogout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 14px;
+  background: #F9B464;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+}
+
+.btnLogout:hover {
+  background: rgba(249, 180, 100, 0.5);
+}
+
+
+.menuPanel {
+  min-width: 200px;
+  text-align: center;
+
+}
+
+
+.locations {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+
+.btn .active {
+  background-color: rgba(249, 180, 100, 0.8);
+}
+
+.menuPanel h3:hover, .menuPanel h4:hover {
+  cursor: pointer;
+  background-color: rgba(249, 180, 100, 0.8);
+  transition: background-color 0.4s ease;
+}
+
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.mainContent {
+  border-left: 1px dashed black;
+  min-height: 100vh;
+  flex: 1;
+}
+
+.Wrap {
+  display: flex;
+  height: 100%;
+}
+
+.sensor {
+  width: 526px;
+  height: 435px;
+  border-radius: 20px;
+  border: 1px solid #000;
+  background: #FAF8F3;
+  margin-bottom: 24px;
+}
+
+.sensor .rowSensor {
+  margin: 10px 10px;
+  display: flex;
+  align-items: center;
+}
+
+.rowSensor h4, .rowSensor button, .rowSensor h6 {
+  display: inline-block;
+  vertical-align: center;
+
+}
+
+.graphic {
+  border-radius: 10px;
+  background: #FFF;
+  box-shadow: 0px 16px 24px 0px rgba(22, 34, 51, 0.08), 0px 4px 8px -4px rgba(22, 34, 51, 0.08);
+  width: 506px;
+  height: 168px;
+  margin-left: 10px;
+}
+
+.valueNow {
+  width: 243px;
+  height: 138px;
+  border-radius: 10px;
+  background: #FFF;
+  box-shadow: 0px 16px 24px 0px rgba(22, 34, 51, 0.08), 0px 4px 8px -4px rgba(22, 34, 51, 0.08);
+  margin: 10px;
+  text-align: center;
+  padding: 10px;
+}
+
+.airGraphics {
+  width: 243px;
+  height: 170px;
+  border-radius: 10px;
+  background: #FFF;
+  box-shadow: 0px 16px 24px 0px rgba(22, 34, 51, 0.08), 0px 4px 8px -4px rgba(22, 34, 51, 0.08);
+  margin: 10px;
+}
+
+.roomChooser {
+  margin-top: 30px;
+  margin-bottom: 30px;
+
+}
+
+.roomChooser .btn {
+  margin-right: 10px;
+}
+
+
+.airSensor {
+  width: 100%;
+  min-height: 470px;
+  border-radius: 20px;
+  border: 1px solid #000;
+  background: #FAF8F3;
+  margin-bottom: 50px;
+}
+
+
+.airSensor .rowSensor {
+  margin: 10px 10px;
+  display: flex;
+  align-items: center;
+}
+
+.rowSensor h4, .rowSensor button, .rowSensor h6 {
+  display: inline-block;
+  vertical-align: center;
+
+}
+
+
+.half {
+  width: 520px;
+  height: 450px;
+}
+
+
+.airValueNow {
+  width: 185px;
+  height: 36px;
+  border-radius: 10px;
+  background: #FFF;
+  box-shadow: 0px 16px 24px 0px rgba(22, 34, 51, 0.08), 0px 4px 8px -4px rgba(22, 34, 51, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  vertical-align: center;
+}
+
+.airValueNow h4 {
+  text-align: center;
+  width: 92px;
+}
+
+
+.half .rowSensor .text-center h4 {
+  width: 86px;
+}
+
+
+.rowAirSensor {
+  display: flex;
+}

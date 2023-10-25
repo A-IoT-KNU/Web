@@ -1,0 +1,35 @@
+<button class="btnClose" mat-dialog-close>
+  <img alt="Close" src="assets/img/BtnClose.svg">
+</button>
+<div class="wrapper text-center">
+
+  <h2>Нова кімната</h2>
+  <h5>Назва кімнати</h5>
+
+  <form (ngSubmit)="onSubmit()" [formGroup]="myForm">
+    <div class="NewLocation">
+      <input class="locationName" formControlName="room" placeholder="Назва кімнати" required type="text">
+    </div>
+
+    <div class="dropdown">
+      <h5>Локація</h5>
+      <button aria-expanded="false" aria-haspopup="true" class="btn btn-primary dropdown-toggle"
+              data-bs-toggle="dropdown"
+              type="button">
+        {{selectedLocation}}
+      </button>
+      <div aria-labelledby="dropdownMenuButton" class="dropdown-menu">
+        <a (click)="handleItemClick(location.value)" *ngFor="let location of locations"
+           class="dropdown-item">{{location.value}}</a>
+      </div>
+    </div>
+
+    <div class="NewLocation">
+      <button [disabled]="myForm.invalid" class="btn btn-warning createLocationBtn" mat-dialog-close type="submit">
+        Створити кімнату
+      </button>
+    </div>
+  </form>
+
+</div>
+

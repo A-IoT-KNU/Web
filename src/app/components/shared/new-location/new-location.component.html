@@ -1,0 +1,31 @@
+<button class="btnClose" mat-dialog-close>
+  <img alt="Close" src="assets/img/BtnClose.svg">
+</button>
+<div class="wrapper text-center">
+
+  <h2>Нова локація</h2>
+  <h5>Назва локації</h5>
+
+  <form (ngSubmit)="onSubmit()" [formGroup]="myForm">
+    <div class="NewLocation">
+      <input class="locationName" formControlName="location" placeholder="Назва локації" type="text" required>
+    </div>
+
+    <!--    <h5>Кімнати</h5>-->
+    <!--    <button (click)="addRoom()" type="button" class="btn btn-primary addRoomBtn">Додати кімнату</button>-->
+    <!--    <div class="roomWrapper">-->
+    <!--      <div *ngFor="let room of rooms" class="roomItem">-->
+    <!--        <input [formControlName]="room" type="text" class="roomInput">-->
+    <!--        <div class="deleteDivBtn" (click)="deleteRoom(room)">-->
+    <!--          <img alt="Delete" src="assets/img/x-circle-fill.svg">-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
+
+    <div class="NewLocation">
+      <button class="btn btn-warning createLocationBtn" type="submit" [disabled]="myForm.invalid" mat-dialog-close>Створити локацію</button>
+    </div>
+  </form>
+
+</div>
+

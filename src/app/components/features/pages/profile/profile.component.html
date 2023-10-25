@@ -1,0 +1,68 @@
+<div class="mainHeader">
+
+  <div class="head">
+    <div class="container">
+      <div class="navHead row">
+        <div class="col-4">
+          <h1>Iot Platform</h1>
+        </div>
+        <button class="offset-6 col-2 btnLogout" (click)="logout()"><h3>Вихід</h3></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="Wrap">
+    <div class="menuPanel">
+      <div class="content">
+        <a routerLink="/profile" style="min-width: 200px;">
+          <h2>{{user?.username}}</h2>
+        </a>
+        <div class="locations">
+          <a routerLink="/dashboard"><h4 *ngFor="let location of locations "> {{location.value}}</h4></a>
+        </div>
+
+        <button (click)="openNewLocation()" class="btn btn-primary m-3">
+          Додати нову локацію
+        </button>
+      </div>
+    </div>
+
+
+
+
+
+    <div class="mainContent">
+      <div class="container">
+        <ng-container *ngIf="user">
+          <h2>User information</h2>
+          <table>
+            <tr *ngIf="user.username">
+              <th scope="row">Username</th>
+              <td>{{ user.username }}</td>
+            </tr>
+            <tr *ngIf="user.firstName">
+              <th scope="row">First name</th>
+              <td>{{ user.firstName }}</td>
+            </tr>
+            <tr *ngIf="user.lastName">
+              <th scope="row">Last name</th>
+              <td>{{ user.lastName }}</td>
+            </tr>
+            <tr *ngIf="user.email">
+              <th scope="row">E-mail</th>
+              <td>{{ user.email }}</td>
+            </tr>
+          </table>
+        </ng-container>
+      </div>
+    </div>
+
+
+
+
+  </div>
+
+</div>
+
+
+
