@@ -85,7 +85,7 @@ export class DashboardComponent implements OnInit {
 
   openNewSensor(): void {
     const dialogRef = this.dialog.open(NewSensorComponent, {
-      width: '330px', height: '430px'
+      width: '330px'
     });
   }
 

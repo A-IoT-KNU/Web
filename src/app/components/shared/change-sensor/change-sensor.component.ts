@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
-import {MatDialogRef} from '@angular/material/dialog';
+import { Component } from '@angular/core';
+import {MatDialogRef} from "@angular/material/dialog";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import 'bootstrap'
+
 interface typeOfSensor {
   value: string;
 }
@@ -13,14 +13,12 @@ interface location {
 interface room {
   value: string;
 }
-
-
 @Component({
-  selector: 'app-new-sensor',
-  templateUrl: './new-sensor.component.html',
-  styleUrls: ['./new-sensor.component.css'],
+  selector: 'app-change-sensor',
+  templateUrl: './change-sensor.component.html',
+  styleUrls: ['./change-sensor.component.css']
 })
-export class NewSensorComponent {
+export class ChangeSensorComponent {
   typeOfSensors:typeOfSensor[]=[
     {value:'Температура'},
     {value:'Вологість'},
@@ -43,7 +41,7 @@ export class NewSensorComponent {
   ]
 
   constructor(
-    public dialogRef: MatDialogRef<NewSensorComponent>
+    public dialogRef: MatDialogRef<ChangeSensorComponent>
   ){}
 
   selectedSensor: string = this.typeOfSensors[0].value;
@@ -81,10 +79,3 @@ export class NewSensorComponent {
     }
   }
 }
-
-
-
-
-
-
-

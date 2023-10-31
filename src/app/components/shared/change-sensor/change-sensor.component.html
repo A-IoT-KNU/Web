@@ -3,7 +3,7 @@
 </button>
 <div class="wrapper text-center">
   <form (ngSubmit)="onSubmit()" [formGroup]="myForm">
-    <h2>Новий сенсор</h2>
+    <h2>Змінити сенсор</h2>
     <input class="locationName" formControlName="name" placeholder="Назва кімнати" required type="text">
     <div class="dropdown">
       <h5>Тип сенсора</h5>
@@ -43,7 +43,7 @@
       </div>
     </div>
     <p>
-      <button (click)="onSubmit()" [disabled]="myForm.invalid" class="btn btn-warning" mat-dialog-close>Додати</button>
+      <button (click)="onSubmit()" [disabled]="myForm.invalid" class="btn btn-warning" mat-dialog-close>Змінити</button>
     </p>
   </form>
 </div>

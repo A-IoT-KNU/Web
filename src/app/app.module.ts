@@ -17,6 +17,7 @@ import { NewLocationComponent } from './components/shared/new-location/new-locat
 import { NewRoomComponent } from './components/shared/new-room/new-room.component';
 import { NewSensorComponent } from './components/shared/new-sensor/new-sensor.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { ChangeSensorComponent } from './components/shared/change-sensor/change-sensor.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -49,7 +50,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     DashboardComponent,
     NewLocationComponent,
     NewRoomComponent,
-    NewSensorComponent
+    NewSensorComponent,
+    ChangeSensorComponent
   ],
   imports: [
     BrowserModule,

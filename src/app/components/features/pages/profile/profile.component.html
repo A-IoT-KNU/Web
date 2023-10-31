@@ -15,7 +15,8 @@
     <div class="menuPanel">
       <div class="content">
         <a routerLink="/profile" style="min-width: 200px;">
-          <h2>{{user?.username}}</h2>
+          <h2 *ngIf="user">{{user?.username}}</h2>
+          <h2 *ngIf="!user">User</h2>
         </a>
         <div class="locations">
           <a routerLink="/dashboard"><h4 *ngFor="let location of locations "> {{location.value}}</h4></a>
@@ -32,29 +33,41 @@
 
 
     <div class="mainContent">
-      <div class="container">
-        <ng-container *ngIf="user">
-          <h2>User information</h2>
-          <table>
-            <tr *ngIf="user.username">
-              <th scope="row">Username</th>
-              <td>{{ user.username }}</td>
-            </tr>
-            <tr *ngIf="user.firstName">
-              <th scope="row">First name</th>
-              <td>{{ user.firstName }}</td>
-            </tr>
-            <tr *ngIf="user.lastName">
-              <th scope="row">Last name</th>
-              <td>{{ user.lastName }}</td>
-            </tr>
-            <tr *ngIf="user.email">
-              <th scope="row">E-mail</th>
-              <td>{{ user.email }}</td>
-            </tr>
-          </table>
-        </ng-container>
+      <div class="userInformation">
+        <h3>Електронна пошта</h3>
+        <h4 *ngIf="user">{{user.email}}</h4>
+        <h4 *ngIf="!user">myemail123@gmail.com</h4>
+        <h3>Ім'я користувача</h3>
+        <h4 *ngIf="user">{{user.username}}</h4>
+        <h4 *ngIf="!user">Username</h4>
+        <h3>Прізвище Ім'я</h3>
+        <h4 *ngIf="user">{{user.lastName}} {{user.firstName}}</h4>
+        <h4 *ngIf="!user">Last name First name</h4>
       </div>
+
+<!--      <div class="container">-->
+<!--        <ng-container *ngIf="user">-->
+<!--          <h2>User information</h2>-->
+<!--          <table>-->
+<!--            <tr *ngIf="user.username">-->
+<!--              <th scope="row">Username</th>-->
+<!--              <td>{{ user.username }}</td>-->
+<!--            </tr>-->
+<!--            <tr *ngIf="user.firstName">-->
+<!--              <th scope="row">First name</th>-->
+<!--              <td>{{ user.firstName }}</td>-->
+<!--            </tr>-->
+<!--            <tr *ngIf="user.lastName">-->
+<!--              <th scope="row">Last name</th>-->
+<!--              <td>{{ user.lastName }}</td>-->
+<!--            </tr>-->
+<!--            <tr *ngIf="user.email">-->
+<!--              <th scope="row">E-mail</th>-->
+<!--              <td>{{ user.email }}</td>-->
+<!--            </tr>-->
+<!--          </table>-->
+<!--        </ng-container>-->
+<!--      </div>-->
     </div>
 
 

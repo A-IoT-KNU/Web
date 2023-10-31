@@ -15,9 +15,11 @@
     <div class="menuPanel">
       <div class="content">
         <a routerLink="/profile" style="min-width: 200px;">
-          <h3>
+          <h3 *ngIf="user">
             {{user?.username}}
           </h3>
+
+          <h3 *ngIf="!user">User</h3>
         </a>
         <div class="locations">
           <a routerLink="/dashboard"><h4 *ngFor="let location of locations "> {{location.value}}</h4></a>
