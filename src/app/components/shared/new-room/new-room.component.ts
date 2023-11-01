@@ -1,9 +1,8 @@
 import {Component} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {DataService} from "../../../services/data.service";
 
-interface location {
-  value: string;
-}
+
 
 @Component({
   selector: 'app-new-room',
@@ -12,17 +11,17 @@ interface location {
 })
 export class NewRoomComponent {
 
-  locations: location[] = [
-    {value: 'Квартира А'},
-    {value: 'Дім'},
-    {value: 'Квартира Б'},
-  ];
+  locations = this.dataService.getLocations();
 
   myForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,private dataService:DataService) {
     this.myForm = this.fb.group({
-      room: ['', Validators.required],
+      room: this.fb.control('', [Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(30),
+        Validators.pattern(/^[a-zA-Z _а-яА-ЯіІїЇєЄ]+$/),
+      ]),
     });
   }
 
