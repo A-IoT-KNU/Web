@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 
 import Chart from 'chart.js/auto';
@@ -8,6 +8,7 @@ import {NewSensorComponent} from "../../../shared/new-sensor/new-sensor.componen
 import {NewRoomComponent} from "../../../shared/new-room/new-room.component";
 import {AuthService} from "../../../../services/auth.service";
 import {DataService} from "../../../../services/data.service";
+import {ChangeSensorComponent} from "../../../shared/change-sensor/change-sensor.component";
 
 
 @Component({
@@ -15,21 +16,28 @@ import {DataService} from "../../../../services/data.service";
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements AfterViewInit  {
 
   locations: any;
 
-  ngOnInit(): void {
-    this.createChart("m1");
-    this.createChart("m2");
-    this.getUserData();
+  sensors = [
+    { title: 'Температура в кухні', typeOfSensor:'temperature', idChart:'nm1', showPanel: false, value:'20C', errorData:false, chartData:"5, 10, 3, 4, 57, 3, 9"},
+    { title: 'Вологість в кухні', typeOfSensor:'wet', idChart:'nm2', showPanel: false , value:'30', errorData:false, chartData:"3, 7, 3, 9, 5"},
+    { title: 'Тиск в кухні', typeOfSensor:'pressure', idChart:'nm3', showPanel: false , value:'12', errorData:true, chartData:"8, 15, 9, 3, 1"},
+    { title: 'Освітленість в кухні', typeOfSensor:'light', idChart:'nm4', showPanel: false , value:'4', errorData:false, chartData:"5, 10, 3, 4, 5"},
+    { title: 'Якість повітря в кухні', typeOfSensor:'airSensor', idChart:'nm5', showPanel: false , value:'5', errorData:false, chartData:"5, 10, 3, 4, 5"},
+  ];
 
-
-    this.locations = this.dataService.getLocations();
-    this.dataService.getLocationsSubject().subscribe(locations => {
-      this.locations = locations;
-    });
+ngAfterViewInit() {
+  // Temp for
+  //Write the loop to create the chart for all sensors
+  for(const sensor of this.sensors){
+    this.createChart(sensor.idChart, sensor.chartData);
   }
+}
+
+
+
 
   constructor(public dialog: MatDialog, private authService: AuthService, private dataService: DataService) {
   }
@@ -54,6 +62,7 @@ export class DashboardComponent implements OnInit {
     {name: 'PM10', value: '25', unit: 'µg/m3', nowValue: '10.22'}
   ];
 
+
   openNewLocation(): void {
     const dialogRef = this.dialog.open(NewLocationComponent, {
       width: '330px',
@@ -67,26 +76,33 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  openChangeSensor(): void {
+    const dialogRef = this.dialog.open(ChangeSensorComponent, {
+      width: '330px'
+    });
+  }
+
   openNewRoom(): void {
     const dialogRef = this.dialog.open(NewRoomComponent, {
-      width: '330px', height:'700px'
+      width: '330px', height:'400px'
     });
   }
 
   public chart: any;
+  createChart(id: string, chartData:any): void {
 
-  createChart(id: string): void {
+    const chartValues: string[] = chartData.split(', ');
+    let labelsCount= chartValues.map((value, index) => index.toString());
+    console.log(labelsCount)
     this.chart = new Chart(id, {
       type: 'line', //this denotes tha type of chart
 
       data: {// values on X-Axis
-        labels: ['0', '1', '2', '3',
-          '4', '5', '6', '7'],
+        labels: labelsCount ,
         datasets: [
           {
             label: "Temperature",
-            data: ['15', '30', '34', '28', '20',
-              '24', '20', '18'],
+            data: chartValues,
             backgroundColor: function (context) {
               let index = context.dataIndex;
               let value = context.dataset.data[index];

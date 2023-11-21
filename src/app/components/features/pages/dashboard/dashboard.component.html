@@ -6,7 +6,7 @@
         <div class="col-4">
           <h1>Iot Platform</h1>
         </div>
-        <button class="offset-6 col-2 btnLogout" (click)="logout()"><h3>Вихід</h3></button>
+        <button (click)="logout()" class="offset-6 col-2 btnLogout"><h3>Вихід</h3></button>
       </div>
     </div>
   </div>
@@ -45,17 +45,35 @@
           </div>
         </div>
 
+
         <div class="row d-flex w-100 justify-content-sm-center justify-content-xxl-between">
-          <div class="col-auto">
-            <div class="sensor">
+          <div *ngFor="let sensor of sensors" class="col-6">
+            <div (mouseenter)="sensor.showPanel = true" (mouseleave)="sensor.showPanel = false" *ngIf="sensor.typeOfSensor != 'airSensor'"
+                 class="sensor">
+              <div *ngIf="sensor.showPanel && !sensor.errorData" class="changeSensor">
+                <h5>{{sensor.title}}</h5>
+                <button (click)="openChangeSensor()" class="btn btn-outline-primary">Змінити</button>
+                <button class="btn btn-outline-primary">Видалити</button>
+              </div>
+
+              <div *ngIf="sensor.errorData" class="errorSensor">
+                <h1>!</h1>
+                <h4>Останнє отримання даних: 11.12.2023 12:31:45</h4>
+                <button class="btn btn-outline-primary">Видалити</button>
+              </div>
+
               <div class="rowSensor">
                 <h6 class="me-1">
-                  Середня температура за
+                  <span *ngIf="sensor.typeOfSensor == 'temperature'">Середня температура за</span>
+                  <span *ngIf="sensor.typeOfSensor == 'wet'">Середня вологість за</span>
+                  <span *ngIf="sensor.typeOfSensor == 'pressure'">Середній тиск за</span>
+                  <span *ngIf="sensor.typeOfSensor == 'light'">Середня освітленість за</span>
                 </h6>
+
                 <button class="btn btn-primary">
                   24 години
                 </button>
-                <h4>: 20°C</h4>
+                <h4>: {{sensor.value}}</h4>
               </div>
 
               <div class="rowSensor d-flex justify-content-between">
@@ -67,53 +85,41 @@
               </div>
 
               <div class="graphic">
-                <canvas id="m2">{{ chart }}</canvas>
+                <canvas [id]='sensor.idChart'>{{ chart }}</canvas>
               </div>
 
               <div class="valueNow">
-                <h2>Температура:</h2>
+                <h2><span *ngIf="sensor.typeOfSensor == 'temperature'">Температура</span>
+                  <span *ngIf="sensor.typeOfSensor == 'wet'">Вологість</span>
+                  <span *ngIf="sensor.typeOfSensor == 'pressure'">Тиск</span>
+                  <span *ngIf="sensor.typeOfSensor == 'light'">Освітленість</span></h2>
                 <br>
                 <h2>21°С</h2>
               </div>
             </div>
           </div>
 
-          <div class="col-auto ">
-            <div class="sensor">
-              <div class="rowSensor">
-                <h6 class="me-1">
-                  Середня температура за
-                </h6>
-                <button class="btn btn-primary">
-                  24 години
-                </button>
-                <h4>: 20°C</h4>
-              </div>
+          <div *ngFor="let sensor of sensors" class="col-12">
+            <div (mouseenter)="sensor.showPanel = true" (mouseleave)="sensor.showPanel = false" *ngIf="sensor.typeOfSensor == 'airSensor'"
+                 class="airSensor">
 
-              <div class="rowSensor d-flex justify-content-between">
-                <div class="btn btn-outline-primary">Тиждень</div>
-                <div class="btn btn-outline-primary">Місяць</div>
-                <div class="btn btn-outline-primary">3 Місяці</div>
-                <div class="btn btn-outline-primary">Пів року</div>
-                <div class="btn btn-outline-primary">Рік</div>
-              </div>
-
-              <div class="graphic">
-                <canvas id="m1">{{ chart }}</canvas>
-              </div>
-
-              <div class="valueNow">
-                <h2>Температура:</h2>
-                <br>
-                <h2>21°С</h2>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12">
-            <div class="airSensor">
               <div class="row d-flex justify-content-sm-center justify-content-xxl-between">
+
                 <div class="col-auto">
+                  <div *ngIf="sensor.showPanel && !sensor.errorData" class="changeSensor">
+                    <h5>{{sensor.title}}</h5>
+                    <div>
+                      <button (click)="openChangeSensor()" class="btn btn-outline-primary">Змінити</button>
+                      <button class="btn btn-outline-primary">Видалити</button>
+                    </div>
+
+                  </div>
+
+                  <div *ngIf="sensor.errorData" class="errorSensor">
+                    <h1>!</h1>
+                    <h4>Останнє отримання даних: 11.12.2023 12:31:45</h4>
+                    <button class="btn btn-outline-primary">Видалити</button>
+                  </div>
                   <div class="half">
                     <div class="rowSensor">
                       <h6 class="me-1">
@@ -176,6 +182,164 @@
           </div>
 
         </div>
+
+
+        <!--        <div class="row d-flex w-100 justify-content-sm-center justify-content-xxl-between">-->
+        <!--          <div class="col-auto">-->
+        <!--            <div class="sensor" (mouseenter)="showPanel = true" (mouseleave)="showPanel = false">-->
+        <!--              <div *ngIf="showPanel && !errorData" class="changeSensor">-->
+        <!--                <h3>Назва датчика</h3>-->
+        <!--                <button class="btn btn-outline-primary" (click)="openChangeSensor()">Змінити</button>-->
+        <!--                <button class="btn btn-outline-primary">Видалити</button>-->
+        <!--              </div>-->
+
+        <!--              <div *ngIf="errorData" class = "errorSensor">-->
+        <!--                <h1>!</h1>-->
+        <!--                <h4>Останнє отримання даних: 11.12.2023 12:31:45</h4>-->
+        <!--                <button class="btn btn-outline-primary">Видалити</button>-->
+        <!--              </div>-->
+
+        <!--              <div class="rowSensor">-->
+        <!--                <h6 class="me-1">-->
+        <!--                  Середня температура за-->
+        <!--                </h6>-->
+        <!--                <button class="btn btn-primary">-->
+        <!--                  24 години-->
+        <!--                </button>-->
+        <!--                <h4>: 20°C</h4>-->
+        <!--              </div>-->
+
+        <!--              <div class="rowSensor d-flex justify-content-between">-->
+        <!--                <div class="btn btn-outline-primary">Тиждень</div>-->
+        <!--                <div class="btn btn-outline-primary">Місяць</div>-->
+        <!--                <div class="btn btn-outline-primary">3 Місяці</div>-->
+        <!--                <div class="btn btn-outline-primary">Пів року</div>-->
+        <!--                <div class="btn btn-outline-primary">Рік</div>-->
+        <!--              </div>-->
+
+        <!--              <div class="graphic">-->
+        <!--                <canvas id="m2">{{ chart }}</canvas>-->
+        <!--              </div>-->
+
+        <!--              <div class="valueNow">-->
+        <!--                <h2>Температура:</h2>-->
+        <!--                <br>-->
+        <!--                <h2>21°С</h2>-->
+        <!--              </div>-->
+        <!--            </div>-->
+        <!--          </div>-->
+
+        <!--          <div class="col-auto ">-->
+        <!--            <div class="sensor">-->
+        <!--              <div class="rowSensor">-->
+        <!--                <h6 class="me-1">-->
+        <!--                  Середня температура за-->
+        <!--                </h6>-->
+        <!--                <button class="btn btn-primary">-->
+        <!--                  24 години-->
+        <!--                </button>-->
+        <!--                <h4>: 20°C</h4>-->
+        <!--              </div>-->
+
+        <!--              <div class="rowSensor d-flex justify-content-between">-->
+        <!--                <div class="btn btn-outline-primary">Тиждень</div>-->
+        <!--                <div class="btn btn-outline-primary">Місяць</div>-->
+        <!--                <div class="btn btn-outline-primary">3 Місяці</div>-->
+        <!--                <div class="btn btn-outline-primary">Пів року</div>-->
+        <!--                <div class="btn btn-outline-primary">Рік</div>-->
+        <!--              </div>-->
+
+        <!--              <div class="graphic">-->
+        <!--                <canvas id="m1">{{ chart }}</canvas>-->
+        <!--              </div>-->
+
+        <!--              <div class="valueNow">-->
+        <!--                <h2>Температура:</h2>-->
+        <!--                <br>-->
+        <!--                <h2>21°С</h2>-->
+        <!--              </div>-->
+        <!--            </div>-->
+        <!--          </div>-->
+
+        <!--          <div class="col-12">-->
+        <!--            <div class="airSensor" (mouseenter)="showPanel = true" (mouseleave)="showPanel = false">-->
+
+        <!--              <div class="row d-flex justify-content-sm-center justify-content-xxl-between">-->
+
+        <!--                <div class="col-auto">-->
+        <!--                  <div *ngIf="showPanel && !errorData" class="changeSensor">-->
+        <!--                    <h3>Назва датчика</h3>-->
+        <!--                    <button class="btn btn-outline-primary" (click)="openChangeSensor()">Змінити</button>-->
+        <!--                    <button class="btn btn-outline-primary">Видалити</button>-->
+        <!--                  </div>-->
+
+        <!--                  <div *ngIf="errorData" class = "errorSensor">-->
+        <!--                    <h1>!</h1>-->
+        <!--                    <h4>Останнє отримання даних: 11.12.2023 12:31:45</h4>-->
+        <!--                    <button class="btn btn-outline-primary">Видалити</button>-->
+        <!--                  </div>-->
+        <!--                  <div class="half">-->
+        <!--                    <div class="rowSensor">-->
+        <!--                      <h6 class="me-1">-->
+        <!--                        Середня температура за-->
+        <!--                      </h6>-->
+        <!--                      <button class="btn btn-primary">-->
+        <!--                        1 годину-->
+        <!--                      </button>-->
+        <!--                    </div>-->
+
+        <!--                    <div class="frame7">-->
+
+
+        <!--                      <div *ngFor="let sensor of airSensor" class="rowAirSensor justify-content-between">-->
+        <!--                        <h4 class="text-center" style="width: 86px;">{{ sensor.name }}</h4>-->
+        <!--                        <h4>:</h4>-->
+        <!--                        <h4 class="text-end" style="width: 86px;">{{ sensor.value }}</h4>-->
+        <!--                        <h4>&nbsp;</h4>-->
+        <!--                        <h4 style="width: 86px;">{{ sensor.unit }}</h4>-->
+        <!--                        <div class="airValueNow">-->
+        <!--                          <h4>{{ sensor.name }}</h4>-->
+        <!--                          <h4 class="text-end">{{ sensor.nowValue }}</h4>-->
+        <!--                        </div>-->
+        <!--                      </div>-->
+
+
+        <!--                    </div>-->
+
+
+        <!--                    <div class="row">-->
+        <!--                      <div class="airGraphics col-6" style="margin-left: 20px;"></div>-->
+        <!--                      <div class="airGraphics col-6"></div>-->
+        <!--                    </div>-->
+
+
+        <!--                  </div>-->
+        <!--                </div>-->
+
+        <!--                <div class="col-auto ">-->
+        <!--                  <div class="half">-->
+        <!--                    <div class="rowSensor d-flex justify-content-between ms-0">-->
+        <!--                      <div class="btn btn-outline-primary">Тиждень</div>-->
+        <!--                      <div class="btn btn-outline-primary">Місяць</div>-->
+        <!--                      <div class="btn btn-outline-primary">3 Місяці</div>-->
+        <!--                      <div class="btn btn-outline-primary">Пів року</div>-->
+        <!--                      <div class="btn btn-outline-primary">Рік</div>-->
+        <!--                    </div>-->
+        <!--                    <div class="row">-->
+        <!--                      <div class="airGraphics col-6"></div>-->
+        <!--                      <div class="airGraphics col-6"></div>-->
+        <!--                      <div class="airGraphics col-6"></div>-->
+        <!--                      <div class="airGraphics col-6"></div>-->
+        <!--                    </div>-->
+        <!--                  </div>-->
+        <!--                </div>-->
+        <!--              </div>-->
+
+
+        <!--            </div>-->
+        <!--          </div>-->
+
+        <!--        </div>-->
 
 
       </div>

@@ -49,7 +49,11 @@ export class ChangeSensorComponent {
   selectedRoom: string = this.rooms[0].value;
 
   myForm = new FormGroup({
-    name: new FormControl('', Validators.required),
+    name: new FormControl('', [Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(30),
+      Validators.pattern(/^[a-zA-Z _а-яА-ЯіІїЇєЄ]+$/),
+    ]),
     selectedSensor: new FormControl(this.selectedSensor, Validators.required),
     selectedLocation: new FormControl(this.selectedLocation, Validators.required),
     selectedRoom: new FormControl(this.selectedRoom, Validators.required)

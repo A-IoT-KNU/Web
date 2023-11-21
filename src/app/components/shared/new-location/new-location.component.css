@@ -49,3 +49,8 @@
   background-color: transparent;
   border: none;
 }
+.errorMessage h5{
+  color:red;
+  font-size: 12px;
+  font-weight: 700;
+}

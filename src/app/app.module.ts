@@ -1,4 +1,4 @@
-import {APP_INITIALIZER, NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
@@ -18,6 +18,10 @@ import { NewRoomComponent } from './components/shared/new-room/new-room.componen
 import { NewSensorComponent } from './components/shared/new-sensor/new-sensor.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { ChangeSensorComponent } from './components/shared/change-sensor/change-sensor.component';
+import { MainHeaderComponent } from './components/shared/main-header/main-header.component';
+import { LoginFormComponent } from './components/shared/login-form/login-form.component';
+import { RegisterFormComponent } from './components/shared/register-form/register-form.component';
+
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -51,7 +55,10 @@ function initializeKeycloak(keycloak: KeycloakService) {
     NewLocationComponent,
     NewRoomComponent,
     NewSensorComponent,
-    ChangeSensorComponent
+    ChangeSensorComponent,
+    MainHeaderComponent,
+    LoginFormComponent,
+    RegisterFormComponent,
   ],
   imports: [
     BrowserModule,

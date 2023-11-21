@@ -5,12 +5,12 @@
   <form (ngSubmit)="onSubmit()" [formGroup]="myForm">
     <h2>Новий сенсор</h2>
     <input class="locationName" formControlName="name" placeholder="Назва кімнати" required type="text">
-    <div *ngIf="myForm.get('name')?.invalid && (myForm.get('name')?.dirty || myForm.get('name')?.touched)" class="alert alert-danger">
-      <p *ngIf="myForm.get('name')?.errors?.['required']">Поле є обов'язковим</p>
-      <p *ngIf="myForm.get('name')?.errors?.['minlength']">Мінімальна довжина поля 3 символи</p>
-      <p *ngIf="myForm.get('name')?.errors?.['maxlength']">Максимальна довжина поля 30 символів</p>
-      <p *ngIf="myForm.get('name')?.errors?.['pattern']">Поле має містити тільки літери та пробіли</p>
-      <p *ngIf="myForm.get('name')?.errors?.['duplicate']">Така локація вже існує</p>
+    <div *ngIf="myForm.get('name')?.invalid && (myForm.get('name')?.dirty || myForm.get('name')?.touched)" class="errorMessage">
+      <h5 *ngIf="myForm.get('name')?.errors?.['required']">Поле є обов'язковим</h5>
+      <h5 *ngIf="myForm.get('name')?.errors?.['minlength']">Мінімальна довжина поля 3 символи</h5>
+      <h5 *ngIf="myForm.get('name')?.errors?.['maxlength']">Максимальна довжина поля 30 символів</h5>
+      <h5 *ngIf="myForm.get('name')?.errors?.['pattern']">Поле має містити тільки літери та пробіли</h5>
+      <h5 *ngIf="myForm.get('name')?.errors?.['duplicate']">Така локація вже існує</h5>
     </div>
     <div class="dropdown">
       <h5>Тип сенсора</h5>

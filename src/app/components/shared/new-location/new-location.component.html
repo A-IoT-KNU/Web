@@ -9,12 +9,12 @@
   <form (ngSubmit)="onSubmit()" [formGroup]="myForm">
     <div class="NewLocation">
       <input class="locationName" formControlName="location" placeholder="Назва локації" type="text" required>
-      <div *ngIf="myForm.get('location')?.invalid && (myForm.get('location')?.dirty || myForm.get('location')?.touched)" class="alert alert-danger">
-        <p *ngIf="myForm.get('location')?.errors?.['required']">Поле є обов'язковим</p>
-        <p *ngIf="myForm.get('location')?.errors?.['minlength']">Мінімальна довжина поля 3 символи</p>
-        <p *ngIf="myForm.get('location')?.errors?.['maxlength']">Максимальна довжина поля 30 символів</p>
-        <p *ngIf="myForm.get('location')?.errors?.['pattern']">Поле має містити тільки літери та пробіли</p>
-        <p *ngIf="myForm.get('location')?.errors?.['duplicate']">Така локація вже існує</p>
+      <div *ngIf="myForm.get('location')?.invalid && (myForm.get('location')?.dirty || myForm.get('location')?.touched)" class="errorMessage">
+        <h5 *ngIf="myForm.get('location')?.errors?.['required']">Поле є обов'язковим</h5>
+        <h5 *ngIf="myForm.get('location')?.errors?.['minlength']">Мінімальна довжина поля 3 символи</h5>
+        <h5 *ngIf="myForm.get('location')?.errors?.['maxlength']">Максимальна довжина поля 30 символів</h5>
+        <h5 *ngIf="myForm.get('location')?.errors?.['pattern']">Поле має містити тільки літери та пробіли</h5>
+        <h5 *ngIf="myForm.get('location')?.errors?.['duplicate']">Така локація вже існує</h5>
       </div>
     </div>
     <div class="NewLocation">

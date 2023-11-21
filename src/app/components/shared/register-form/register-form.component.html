@@ -1,0 +1,20 @@
+<div class="d-flex justify-content-center h-100 ">
+  <div class="container">
+    <button class="btnClose" mat-dialog-close>
+      <svg fill="none" height="15" viewBox="0 0 16 15" width="16" xmlns="http://www.w3.org/2000/svg">
+        <line stroke="black" x1="1.35355" x2="15.3536" y1="0.646447" y2="14.6464"/>
+        <line stroke="black" x1="0.646447" x2="14.6464" y1="14.6464" y2="0.646451"/>
+      </svg>
+    </button>
+    <div class="row d-flex justify-content-center align-items-center formReg">
+      <div style="width: 300px">
+        <h3 class="text-center">Реєстрація</h3>
+        <form (ngSubmit)="onSubmit()" [formGroup]="registerForm" class="text-center">
+          <input class="col-12" formControlName="email" matInput placeholder="Електронна пошта">
+          <input class="col-12" formControlName="password" matInput placeholder="Пароль" type="password">
+          <button class="text-center" type="submit">Зареєструватися</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

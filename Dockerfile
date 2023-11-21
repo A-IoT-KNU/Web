@@ -1,11 +1,16 @@
-FROM node:16.14.2-alpine
+# Використовуємо офіційний образ Node.js для створення Angular додатку
+FROM node:16
 
-WORKDIR /src/app
+# Встановлюємо Angular CLI глобально
+RUN npm install -g @angular/cli
 
-COPY . .
-
+# Встановлюємо залежності для додатку
+WORKDIR /usr/src/app
+COPY package*.json ./
 RUN npm install
 
-CMD ["npm", "start"]
+# Копіюємо весь проект в контейнер
+COPY . .
 
-#CMD ["ng", "serve", "--host", "0.0.0.0"]
+# Запускаємо Angular додаток
+CMD ng serve --host 0.0.0.0

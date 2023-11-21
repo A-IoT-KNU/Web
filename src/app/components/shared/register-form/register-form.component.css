@@ -1,0 +1,32 @@
+
+.formReg input{
+  margin-top: 20px;
+  border-radius: 10px;
+  border: 1px solid #000;
+  height: 45px;
+  text-indent: 10px;
+}
+.formReg input::placeholder{
+  color: black;
+}
+.formReg button{
+  margin-top: 20px;
+  border: none ;
+  border-radius: 30px;
+  background: #FFDA7C;
+  width: 200px;
+  height: 45px;
+
+}
+.formReg h3{
+  margin-top: 20px;
+}
+
+
+.btnClose{
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background-color: transparent;
+  border: none;
+}

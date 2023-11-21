@@ -1,0 +1,44 @@
+<div class="mainHeader">
+
+  <div class="head">
+    <div class="container">
+      <div class="navHead row">
+        <div class="col-4">
+          <h1>Iot Platform</h1>
+        </div>
+        <button (click)="logout()" class="offset-6 col-2 btnLogout"><h3>Вихід</h3></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="Wrap">
+    <div class="menuPanel">
+      <div class="content">
+        <a routerLink="/profile" style="min-width: 200px;">
+          <h3 *ngIf="user">
+            {{user?.username}}
+          </h3>
+
+          <h3 *ngIf="!user">User</h3>
+        </a>
+        <div class="locations">
+          <a routerLink="/dashboard"><h4 *ngFor="let location of locations "> {{location.value}}</h4></a>
+        </div>
+
+        <button (click)="openNewLocation()" class="btn btn-primary m-3">
+          Додати нову локацію
+        </button>
+      </div>
+    </div>
+
+
+
+    <div class="mainContent">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+</div>
+
+
+

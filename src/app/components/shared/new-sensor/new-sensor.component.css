@@ -65,3 +65,8 @@ h2{
 .dropdown-item, .dropdown-menu {
   width: 100%;
 }
+.errorMessage h5{
+  color:red;
+  font-size: 12px;
+  font-weight: 700;
+}
