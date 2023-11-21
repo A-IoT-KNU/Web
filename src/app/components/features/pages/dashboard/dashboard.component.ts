@@ -9,6 +9,7 @@ import {NewRoomComponent} from "../../../shared/new-room/new-room.component";
 import {AuthService} from "../../../../services/auth.service";
 import {DataService} from "../../../../services/data.service";
 import {ChangeSensorComponent} from "../../../shared/change-sensor/change-sensor.component";
+import {DeleteSensorComponent} from "../../../shared/delete-sensor/delete-sensor.component";
 
 
 @Component({
@@ -66,6 +67,13 @@ ngAfterViewInit() {
   openNewLocation(): void {
     const dialogRef = this.dialog.open(NewLocationComponent, {
       width: '330px',
+    });
+
+  }
+
+  openDeleteSensor(): void {
+    const dialogRef = this.dialog.open(DeleteSensorComponent, {
+      width: '385px', height:'145px'
     });
 
   }

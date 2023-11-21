@@ -1,78 +1,8 @@
-.mainHeader {
-  width: 100%;
-  min-height: 100%;
-  background: linear-gradient(71deg, #FFF5DC -0.03%, rgba(255, 245, 220, 0.00) 100.03%);
-}
-
-.head {
-  border-bottom: 1px dashed black;
-}
-
-.navHead {
-  display: flex;
-  align-items: center;
-  height: 100px;
-}
-
-.btnLogout {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
-  border: none;
-  border-radius: 14px;
-  background: #F9B464;
-  cursor: pointer;
-  text-decoration: none;
-  color: black;
-}
-
-.btnLogout:hover {
-  background: rgba(249, 180, 100, 0.5);
-}
-
-
-.menuPanel {
-  min-width: 200px;
-  text-align: center;
-
-}
-
-
-.locations {
-  margin-top: 30px;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-
-.btn .active {
-  background-color: rgba(249, 180, 100, 0.8);
-}
-
-.menuPanel h3:hover, .menuPanel h4:hover {
-  cursor: pointer;
-  background-color: rgba(249, 180, 100, 0.8);
-  transition: background-color 0.4s ease;
-}
-
-
-a {
-  text-decoration: none;
-  color: black;
-}
-
 .mainContent {
   border-left: 1px dashed black;
   min-height: 100vh;
   flex: 1;
 }
-
-.Wrap {
-  display: flex;
-  height: 100%;
-}
-
 
 .userInformation{
   display: flex;

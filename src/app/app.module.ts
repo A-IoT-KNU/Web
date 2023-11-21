@@ -21,6 +21,7 @@ import { ChangeSensorComponent } from './components/shared/change-sensor/change-
 import { MainHeaderComponent } from './components/shared/main-header/main-header.component';
 import { LoginFormComponent } from './components/shared/login-form/login-form.component';
 import { RegisterFormComponent } from './components/shared/register-form/register-form.component';
+import { DeleteSensorComponent } from './components/shared/delete-sensor/delete-sensor.component';
 
 
 
@@ -59,6 +60,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
     MainHeaderComponent,
     LoginFormComponent,
     RegisterFormComponent,
+    DeleteSensorComponent,
   ],
   imports: [
     BrowserModule,
