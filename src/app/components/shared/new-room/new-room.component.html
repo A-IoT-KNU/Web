@@ -22,11 +22,11 @@
       <button aria-expanded="false" aria-haspopup="true" class="btn btn-primary dropdown-toggle"
               data-bs-toggle="dropdown"
               type="button">
-        {{selectedLocation}}
+        {{selectedLocation.name}}
       </button>
       <div aria-labelledby="dropdownMenuButton" class="dropdown-menu">
-        <a (click)="handleItemClick(location.value)" *ngFor="let location of locations"
-           class="dropdown-item">{{location.value}}</a>
+        <a (click)="handleItemClick(location)" *ngFor="let location of locations"
+           class="dropdown-item">{{location.name}}</a>
       </div>
     </div>
 

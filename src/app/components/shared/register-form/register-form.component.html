@@ -10,9 +10,54 @@
       <div style="width: 300px">
         <h3 class="text-center">Реєстрація</h3>
         <form (ngSubmit)="onSubmit()" [formGroup]="registerForm" class="text-center">
-          <input class="col-12" formControlName="email" matInput placeholder="Електронна пошта">
-          <input class="col-12" formControlName="password" matInput placeholder="Пароль" type="password">
-          <button class="text-center" type="submit">Зареєструватися</button>
+          <input class="col-12" formControlName="firstName" placeholder="Ім'я" type="text">
+          <div
+            *ngIf="registerForm.get('firstName')?.invalid && (registerForm.get('firstName')?.dirty || registerForm.get('firstName')?.touched)"
+            class="errorMessage">
+            <h5 *ngIf="registerForm.get('firstName')?.errors?.['required']">Поле є обов'язковим</h5>
+            <h5 *ngIf="registerForm.get('firstName')?.errors?.['minlength']">Мінімальна довжина поля 3 символи</h5>
+            <h5 *ngIf="registerForm.get('firstName')?.errors?.['pattern']">Поле має містити тільки літери та
+              пробіли</h5>
+          </div>
+          <input class="col-12" formControlName="lastName" placeholder="Прізвище" type="text">
+          <div
+            *ngIf="registerForm.get('lastName')?.invalid && (registerForm.get('lastName')?.dirty || registerForm.get('lastName')?.touched)"
+            class="errorMessage">
+            <h5 *ngIf="registerForm.get('lastName')?.errors?.['required']">Поле є обов'язковим</h5>
+            <h5 *ngIf="registerForm.get('lastName')?.errors?.['minlength']">Мінімальна довжина поля 3 символи</h5>
+            <h5 *ngIf="registerForm.get('lastName')?.errors?.['pattern']">Поле має містити тільки літери та пробіли</h5>
+
+          </div>
+          <input class="col-12" formControlName="email" placeholder="Електронна пошта" type="text">
+          <div
+            *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)"
+            class="errorMessage">
+            <h5 *ngIf="registerForm.get('email')?.errors?.['required']">Поле є обов'язковим</h5>
+            <h5 *ngIf="registerForm.get('email')?.errors?.['minlength']">Мінімальна довжина поля 3 символи</h5>
+            <h5 *ngIf="registerForm.get('email')?.errors?.['pattern']">Поле має містити електронну пошту</h5>
+
+          </div>
+          <input class="col-12" formControlName="username" placeholder="Ім'я користувача" type="text">
+          <div
+            *ngIf="registerForm.get('username')?.invalid && (registerForm.get('username')?.dirty || registerForm.get('username')?.touched)"
+            class="errorMessage">
+            <h5 *ngIf="registerForm.get('username')?.errors?.['required']">Поле є обов'язковим</h5>
+            <h5 *ngIf="registerForm.get('username')?.errors?.['minlength']">Мінімальна довжина поля 3 символи</h5>
+            <h5 *ngIf="registerForm.get('username')?.errors?.['pattern']">Поле має містити тільки літери та пробіли</h5>
+
+          </div>
+          <input class="col-12" formControlName="password" placeholder="Пароль" type="password">
+          <div
+            *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)"
+            class="errorMessage">
+            <h5 *ngIf="registerForm.get('password')?.errors?.['required']">Поле є обов'язковим</h5>
+            <h5 *ngIf="registerForm.get('password')?.errors?.['minlength']">Мінімальна довжина поля 8 символи</h5>
+            <h5 *ngIf="registerForm.get('password')?.errors?.['maxlength']">Максимальна довжина поля 30 символи</h5>
+            <h5 *ngIf="registerForm.get('password')?.errors?.['pattern']">Поле має містити принаймні одну велику літеру,
+              малу літеру, цифру,принаймні один спеціальний символ.</h5>
+
+          </div>
+          <button [disabled]="registerForm.invalid" class="text-center mb-3" type="submit">Зареєструватися</button>
         </form>
       </div>
     </div>

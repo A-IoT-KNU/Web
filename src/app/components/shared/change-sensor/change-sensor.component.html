@@ -4,7 +4,7 @@
 <div class="wrapper text-center">
   <form (ngSubmit)="onSubmit()" [formGroup]="myForm">
     <h2>Змінити сенсор</h2>
-    <input class="locationName" formControlName="name" placeholder="Назва кімнати" required type="text">
+    <input class="locationName" formControlName="name" placeholder="Назва сенсору" required type="text">
     <div *ngIf="myForm.get('name')?.invalid && (myForm.get('name')?.dirty || myForm.get('name')?.touched)" class="errorMessage">
       <h5 *ngIf="myForm.get('name')?.errors?.['required']">Поле є обов'язковим</h5>
       <h5 *ngIf="myForm.get('name')?.errors?.['minlength']">Мінімальна довжина поля 3 символи</h5>

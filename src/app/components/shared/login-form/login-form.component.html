@@ -7,9 +7,25 @@
       <div style="width: 300px">
         <h3 class="text-center">Вхід в систему</h3>
         <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" class="text-center">
-          <input class="col-12" formControlName="email" matInput placeholder="Електронна пошта">
-          <input class="col-12" formControlName="password" matInput placeholder="Пароль" type="password">
-          <button class="text-center" type="submit">Вхід</button>
+          <input class="col-12" formControlName="username"  placeholder="Електронна пошта">
+          <div
+            *ngIf="loginForm.get('username')?.invalid && (loginForm.get('username')?.dirty || loginForm.get('username')?.touched)"
+            class="errorMessage">
+            <h5 *ngIf="loginForm.get('username')?.errors?.['required']">Поле є обов'язковим</h5>
+            <h5 *ngIf="loginForm.get('username')?.errors?.['minlength']">Мінімальна довжина поля 3 символи</h5>
+            <h5 *ngIf="loginForm.get('username')?.errors?.['pattern']">Поле має містити тільки літери та пробіли</h5>
+          </div>
+          <input class="col-12" formControlName="password"  placeholder="Пароль" type="password">
+          <div
+            *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)"
+            class="errorMessage">
+            <h5 *ngIf="loginForm.get('password')?.errors?.['required']">Поле є обов'язковим</h5>
+            <h5 *ngIf="loginForm.get('password')?.errors?.['minlength']">Мінімальна довжина поля 8 символи</h5>
+            <h5 *ngIf="loginForm.get('password')?.errors?.['maxlength']">Максимальна довжина поля 30 символи</h5>
+            <h5 *ngIf="loginForm.get('password')?.errors?.['pattern']">Поле має містити принаймні одну велику літеру,
+              малу літеру, цифру,принаймні один спеціальний символ.</h5>
+          </div>
+          <button class="text-center mb-3" type="submit">Вхід</button>
         </form>
       </div>
     </div>

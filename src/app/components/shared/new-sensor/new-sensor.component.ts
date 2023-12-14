@@ -1,17 +1,21 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import 'bootstrap'
+import {AuthService} from "../../../services/auth.service";
+
 interface typeOfSensor {
   value: string;
 }
 
 interface location {
-  value: string;
+  id: number;
+  name: string;
 }
 
 interface room {
-  value: string;
+  id: number;
+  name: string;
 }
 
 
@@ -20,35 +24,51 @@ interface room {
   templateUrl: './new-sensor.component.html',
   styleUrls: ['./new-sensor.component.css'],
 })
-export class NewSensorComponent {
-  typeOfSensors:typeOfSensor[]=[
-    {value:'Температура'},
-    {value:'Вологість'},
-    {value:'Тиск'},
-    {value:'Освітленість'},
-    {value:'Якість повітря'}
+export class NewSensorComponent implements OnInit {
+  typeOfSensors: typeOfSensor[] = [
+    {value: 'Температура'},
+    {value: 'Вологість'},
+    {value: 'Тиск'},
+    {value: 'Освітленість'},
+    {value: 'Якість повітря'}
   ];
 
-  locations:location[]=[
-    {value:'Квартира А'},
-    {value:'Дім'},
-    {value:'Квартира Б'},
+  locations: location[] = [
+    {id: 5, name: 'House'},
+    {id: 5, name: 'House'},
+    {id: 5, name: 'House'},
   ];
 
-  rooms:room[]=[
-    {value:"Кухня"},
-    {value:"Спальня"},
-    {value:"Туалет"},
-    {value:"Коридор"},
+  rooms: room[] = [
+    {id: 5, name: 'House'},
+    {id: 5, name: 'House'},
+    {id: 5, name: 'House'},
+    {id: 5, name: 'House'},
   ]
 
+
   constructor(
-    public dialogRef: MatDialogRef<NewSensorComponent>
-  ){}
+    public dialogRef: MatDialogRef<NewSensorComponent>, public auth: AuthService) {
+    this.auth.locations1$.subscribe(locations => {
+      this.locations = locations;
+    });
+    this.auth.rooms1$.subscribe(rooms => {
+      this.rooms = rooms;
+    });
+  }
+
+  selectedLocation: any | undefined;
+  selectedRoom: any | undefined;
+
+  ngOnInit() {
+    console.log(this.locations)
+    this.selectedLocation = this.locations[0].name;
+    this.selectedRoom = this.rooms[0].name;
+    console.log(this.selectedRoom)
+  }
 
   selectedSensor: string = this.typeOfSensors[0].value;
-  selectedLocation: string = this.locations[0].value;
-  selectedRoom: string = this.rooms[0].value;
+
 
   myForm = new FormGroup({
     name: new FormControl('', [Validators.required,
@@ -57,24 +77,27 @@ export class NewSensorComponent {
       Validators.pattern(/^[a-zA-Z _а-яА-ЯіІїЇєЄ]+$/),
     ]),
     selectedSensor: new FormControl(this.selectedSensor, Validators.required),
-    selectedLocation: new FormControl(this.selectedLocation, Validators.required),
+    // @ts-ignore
+    // selectedLocation: new FormControl(this.selectedLocation, Validators.required),
+    selectedLocation: new FormControl('', Validators.required),
+    // @ts-ignore
     selectedRoom: new FormControl(this.selectedRoom, Validators.required)
   });
 
-  handleItemClick(item: string, i:number): void {
-    console.log(`Ви вибрали: ${item}`);
-    switch(i){
+  handleItemClick(item: any, i: number): void {
+    console.log(`Ви вибрали: ${item.name} ${item.id}`);
+    switch (i) {
       case 0:
         this.selectedSensor = item;
         this.myForm.controls['selectedSensor'].setValue(this.selectedSensor);
         break;
       case 1:
-        this.selectedLocation = item;
-        this.myForm.controls['selectedLocation'].setValue(this.selectedLocation);
+        this.selectedLocation = item.name;
+        this.myForm.controls['selectedLocation'].setValue(item.id);
         break;
       case 2:
-        this.selectedRoom = item;
-        this.myForm.controls['selectedRoom'].setValue(this.selectedRoom);
+        this.selectedRoom = item.name;
+        this.myForm.controls['selectedRoom'].setValue(item.id);
         break;
     }
   }
@@ -82,6 +105,7 @@ export class NewSensorComponent {
   onSubmit() {
     if (this.myForm.valid) {
       console.log(this.myForm.value);
+      this.auth.fetchCreateSensor(this.myForm.value.selectedLocation, this.myForm.value.selectedRoom, this.myForm.value.name, this.myForm.value.selectedSensor);
     }
   }
 }

@@ -16,18 +16,24 @@
           <h3 *ngIf="user">
             {{user?.username}}
           </h3>
-          <h3 *ngIf="!user">User</h3>
+          <h3 *ngIf="Username">{{Username}}</h3>
+          <h3 *ngIf="!Username"> User</h3>
         </a>
-        <div class="locations">
-          <a routerLink="/mh/dashboard"><h4 *ngFor="let location of locations "> {{location.value}}</h4></a>
+        <div class="locations" >
+          <a  [routerLink]="['/mh/dashboard', location.id]" *ngFor="let location of locations "><h4> {{location.name}}</h4></a>
         </div>
+        <div class="locations" *ngIf="!isLocation" >
+          <a><h4>Локацій немає</h4></a>
+        </div>
+
 
         <button (click)="openNewLocation()" class="btn btn-primary m-3">
           Додати нову локацію
         </button>
+
       </div>
     </div>
-    <div class="mainContent">
+    <div class="mainContent" >
       <router-outlet></router-outlet>
     </div>
   </div>

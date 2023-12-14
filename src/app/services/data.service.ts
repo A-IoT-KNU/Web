@@ -10,11 +10,6 @@ interface location {
 export class DataService {
   private locationsSubject = new Subject<any[]>();
    private locations: location[] = [
-    {value: 'Підвал'},
-    {value: 'Квартира'},
-    {value: 'Дача'},
-    {value: 'Будинок'},
-    {value: 'Гараж'},
   ];
   constructor() {
   }

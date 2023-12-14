@@ -181,12 +181,3 @@
   font-weight: 700;
 }
 
-
-.empty{
-  height:80vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-

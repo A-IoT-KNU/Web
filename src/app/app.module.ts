@@ -4,7 +4,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {HomeComponent} from './components/features/pages/home/home.component';
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule, HttpInterceptor} from "@angular/common/http";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {MatDialogModule} from "@angular/material/dialog";
@@ -22,29 +22,15 @@ import { MainHeaderComponent } from './components/shared/main-header/main-header
 import { LoginFormComponent } from './components/shared/login-form/login-form.component';
 import { RegisterFormComponent } from './components/shared/register-form/register-form.component';
 import { DeleteSensorComponent } from './components/shared/delete-sensor/delete-sensor.component';
-
+import {AuthService} from "./services/auth.service";
+import {AuthGuard} from "./services/app.guard";
+import {TokenInterceptorService} from "./services/token-interceptor.service";
+import { TestdashComponent } from './components/features/testdash/testdash.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', ".json");
 }
-
-function initializeKeycloak(keycloak: KeycloakService) {
-  return () =>
-    keycloak.init({
-      config: {
-        url: 'http://localhost:8080',
-        realm: 'angular-web',
-        clientId: 'angular-web-client'
-      },
-      initOptions: {
-        onLoad: 'check-sso',
-        silentCheckSsoRedirectUri:
-          window.location.origin + '/assets/silent-check-sso.html'
-      }
-    });
-}
-
 
 @NgModule({
   declarations: [
@@ -61,6 +47,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
     LoginFormComponent,
     RegisterFormComponent,
     DeleteSensorComponent,
+    TestdashComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,12 +68,12 @@ function initializeKeycloak(keycloak: KeycloakService) {
     ReactiveFormsModule
   ],
   providers: [
-    // {
-    //   provide: APP_INITIALIZER,
-    //   useFactory: initializeKeycloak,
-    //   multi: true,
-    //   deps: [KeycloakService]
-    // }
+  AuthService,AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

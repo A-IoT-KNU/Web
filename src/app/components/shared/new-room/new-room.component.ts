@@ -1,6 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DataService} from "../../../services/data.service";
+import {AuthService} from "../../../services/auth.service";
 
 
 
@@ -9,13 +10,20 @@ import {DataService} from "../../../services/data.service";
   templateUrl: './new-room.component.html',
   styleUrls: ['./new-room.component.css']
 })
-export class NewRoomComponent {
+export class NewRoomComponent implements OnInit {
 
-  locations = this.dataService.getLocations();
-
+  // locations = this.dataService.getLocations();
+  locations :any;
   myForm: FormGroup;
 
-  constructor(private fb: FormBuilder,private dataService:DataService) {
+  constructor(private fb: FormBuilder, private auth: AuthService) {
+
+    this.auth.locations1$.subscribe(locations => {
+      this.locations = locations;
+      // Оновлення інтерфейсу користувача з оновленими даними про локації
+    });
+
+
     this.myForm = this.fb.group({
       room: this.fb.control('', [Validators.required,
         Validators.minLength(3),
@@ -25,16 +33,25 @@ export class NewRoomComponent {
     });
   }
 
-  selectedLocation: string = this.locations[0].value;
+  selectedLocation:any;
+  ngOnInit() {
+    console.log(this.locations[0].name);
+    this.selectedLocation = this.locations[0];
+  }
 
-  handleItemClick(item: string): void {
-    console.log(`Ви вибрали: ${item}`);
+
+
+
+  handleItemClick(item: any): void {
+    console.log(`Ви вибрали: ${item.name}`);
     this.selectedLocation = item;
   }
 
   onSubmit() {
     if (this.myForm.valid) {
-      console.log(this.myForm.value, this.selectedLocation);
+      // this.auth.createRooms(this.selectedLocation.id, this.myForm.value.room)
+      this.auth.fetchCreateRoom(this.selectedLocation.id, this.myForm.value.room);
+      console.log(this.myForm.value.room, this.selectedLocation.id);
     }
   }
 }

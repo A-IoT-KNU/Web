@@ -12,36 +12,27 @@ import {MatDialog} from "@angular/material/dialog";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  ngOnInit() {
+    this.authService.logout();
+  }
 
   constructor(private authService: AuthService,public dialog: MatDialog) {
-  }
-
-  async ngOnInit() {
-    if (await this.authService.isAuth()) {
-      this.authService.logout();
-    }
-
-  }
-  login(){
-    this.authService.login();
-  }
-
-  signUp(){
-    this.authService.signUp();
   }
 
 
   openRegistrationDialog(): void {
     const dialogRef = this.dialog.open(RegisterFormComponent, {
-      width: '420px', height: '275px'
+      width: '420px', minHeight: '500px'
     });
   }
 
   openLoginDialog(): void {
     const dialogRef = this.dialog.open(LoginFormComponent, {
-      width: '420px', height: '275px'
+      width: '420px', minHeight: '275px'
     });
   }
+
+
 
 
 }

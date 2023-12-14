@@ -5,18 +5,21 @@ import {ProfileComponent} from "./components/features/pages/profile/profile.comp
 import {DashboardComponent} from "./components/features/pages/dashboard/dashboard.component";
 import {AuthGuard} from "./services/app.guard";
 import {MainHeaderComponent} from "./components/shared/main-header/main-header.component";
+import {TestdashComponent} from "./components/features/testdash/testdash.component";
 
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'mh', component: MainHeaderComponent, children: [{
+  {path: 'test', component: TestdashComponent},
+  {path: 'mh', component: MainHeaderComponent, canActivate:[AuthGuard], children: [{
     path: 'profile', component:ProfileComponent
     },{
-      path: 'dashboard', component:DashboardComponent
+      // path: 'dashboard', component:DashboardComponent
+      path: 'dashboard/:locationId', component: DashboardComponent
     }
+
     ]},
-  // {path: 'profile', component: ProfileComponent, /*canActivate: [AuthGuard]*/},
-  // {path: 'dashboard', component: DashboardComponent, /*canActivate: [AuthGuard]*/},
+
 ];
 
 @NgModule({

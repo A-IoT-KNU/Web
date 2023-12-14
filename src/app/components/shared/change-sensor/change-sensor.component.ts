@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import {MatDialogRef} from "@angular/material/dialog";
+import {Component, Inject} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {AuthService} from "../../../services/auth.service";
 
 interface typeOfSensor {
   value: string;
@@ -40,8 +41,9 @@ export class ChangeSensorComponent {
     {value:"Коридор"},
   ]
 
-  constructor(
-    public dialogRef: MatDialogRef<ChangeSensorComponent>
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,
+    public dialogRef: MatDialogRef<ChangeSensorComponent>,
+    private auth: AuthService
   ){}
 
   selectedSensor: string = this.typeOfSensors[0].value;
@@ -79,6 +81,7 @@ export class ChangeSensorComponent {
 
   onSubmit() {
     if (this.myForm.valid) {
+      this.auth.fetchChangeSensor(this.data.sensorId,this.data.roomid,this.myForm.value.name)
       console.log(this.myForm.value);
     }
   }

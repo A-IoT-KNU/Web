@@ -1,70 +1,40 @@
 <div class="container">
 
-
-  <div *ngIf="!isLocation" class="empty">
-    <h1>У даного користувача локації відсутні</h1>
-    <h5>Спочатку додайте локації</h5>
-  </div>
-  <div *ngIf="!isRoom && isLocation">
-    <div class="row roomChooser">
-      <div class="d-flex justify-content-end">
-        <div (click)="openNewRoom()" class="btn btn-primary">Додати кімнату</div>
-      </div>
-    </div>
-    <div class="empty">
-      <h1>У даній локації кімнати відсутні</h1>
-      <h5>Спочатку додайте кімнату</h5>
-    </div>
-  </div>
-
   <div class="row roomChooser">
-    <div class=" d-flex justify-content-between">
-      <div>
-        <div class="btn btn-outline-primary">Усі датчики</div>
-        <!--        <div *ngFor="let room of rooms" class="btn btn-outline-primary">{{room.name}}{{room.id}}</div>-->
-        <div (click)="toggleButton(room)" *ngFor="let room of rooms"
-             [class.btn-outline-primary]="!room.active"
-             [class.btn-primary]="room.active"
-             class="btn">{{room.name}}{{room.id}}</div>
-      </div>
-
-      <div>
-        <div (click)="openNewRoom()" class="btn btn-primary">Додати кімнату</div>
-        <div (click)="openNewSensor()" [class.d-none]="!lastActiveRoom" class="btn btn-primary">Додати датчик</div>
-      </div>
-
+    <div class=" d-flex">
+      <div class="btn btn-outline-primary">Усі датчики</div>
+      <div class="btn btn-outline-primary active">Кімната 1</div>
+      <div class="btn btn-outline-primary">Кімната 2</div>
+      <div class="btn btn-outline-primary">Кімната 3</div>
+      <div class="btn btn-outline-primary">Кімната 4</div>
+      <div (click)="openNewRoom()" class="btn btn-primary">Додати кімнату</div>
+      <div (click)="openNewSensor()" class="btn btn-primary">Додати датчик</div>
     </div>
   </div>
 
 
   <div class="row d-flex w-100 justify-content-sm-center justify-content-xxl-between">
-    <div *ngFor="let sensor of sensor" class="col-6">
+    <div *ngFor="let sensor of sensors" class="col-6" >
 
-      <!--        <div *ngIf="sensor.typeOfSensor != 'airSensor'" class="sensor">-->
-      <div class="sensor">
-        <!--          <div *ngIf="sensor.showPanel && !sensor.errorData" class="changeSensor">-->
-        <div class="changeSensor">
-          <!--            <h5>{{sensor.title}}</h5>-->
-          <h5>{{sensor.sensorName}} {{sensor.id}}</h5>
-          <div>
-            <button (click)="openChangeSensor(sensor.id, lastActiveRoom.id)" class="btn btn-outline-primary">Змінити</button>
-            <button (click)="openDeleteSensor()" class="btn btn-outline-primary">Видалити</button>
-          </div>
+      <div *ngIf="sensor.typeOfSensor != 'airSensor'" class="sensor">
+        <div *ngIf="sensor.showPanel && !sensor.errorData" class="changeSensor">
+          <h5>{{sensor.title}}</h5>
+          <button (click)="openChangeSensor()" class="btn btn-outline-primary">Змінити</button>
+          <button class="btn btn-outline-primary" (click)="openDeleteSensor()">Видалити</button>
         </div>
 
         <div *ngIf="sensor.errorData" class="errorSensor">
           <h1>!</h1>
           <h4>Останнє отримання даних: 11.12.2023 12:31:45</h4>
-          <button (click)="openDeleteSensor()" class="btn btn-outline-primary">Видалити</button>
+          <button class="btn btn-outline-primary">Видалити</button>
         </div>
 
         <div class="rowSensor">
-          <button (click)="sensor.showPanel= !sensor.showPanel" *ngIf="!sensor.errorData" class="btnChange">
+          <button class="btnChange" (click)="sensor.showPanel= !sensor.showPanel" *ngIf="!sensor.errorData">
             <img alt="Close" src="assets/img/Change.svg">
           </button>
 
           <h6 class="me-1">
-            <span>Середній "показник" за</span>
             <span *ngIf="sensor.typeOfSensor == 'temperature'">Середня температура за</span>
             <span *ngIf="sensor.typeOfSensor == 'wet'">Середня вологість за</span>
             <span *ngIf="sensor.typeOfSensor == 'pressure'">Середній тиск за</span>
@@ -90,9 +60,7 @@
         </div>
 
         <div class="valueNow">
-          <h2>
-            <span>Показник</span>
-            <span *ngIf="sensor.typeOfSensor == 'temperature'">Температура</span>
+          <h2><span *ngIf="sensor.typeOfSensor == 'temperature'">Температура</span>
             <span *ngIf="sensor.typeOfSensor == 'wet'">Вологість</span>
             <span *ngIf="sensor.typeOfSensor == 'pressure'">Тиск</span>
             <span *ngIf="sensor.typeOfSensor == 'light'">Освітленість</span></h2>
@@ -114,7 +82,7 @@
             <div *ngIf="sensor.showPanel && !sensor.errorData" class="changeSensor">
               <h5>{{sensor.title}}</h5>
               <div>
-                <button (click)="openChangeSensor(100000,100000)" class="btn btn-outline-primary">Змінити</button>
+                <button (click)="openChangeSensor()" class="btn btn-outline-primary">Змінити</button>
                 <button class="btn btn-outline-primary">Видалити</button>
               </div>
 
@@ -126,7 +94,7 @@
               <button class="btn btn-outline-primary">Видалити</button>
             </div>
             <div class="half">
-              <button (click)="sensor.showPanel= !sensor.showPanel" *ngIf="!sensor.errorData" class="btnChange">
+              <button class="btnChange" (click)="sensor.showPanel= !sensor.showPanel" *ngIf="!sensor.errorData">
                 <img alt="Close" src="assets/img/Change.svg">
               </button>
               <div class="rowSensor">

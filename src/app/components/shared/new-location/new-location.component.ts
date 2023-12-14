@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DataService} from "../../../services/data.service";
+import {AuthService} from "../../../services/auth.service";
 
 
 @Component({
@@ -13,30 +14,41 @@ export class NewLocationComponent {
 
   errorMessages: string[] = [];
 
-loc = this.dataService.getLocations();
+  loc: any;
 
-myForm: FormGroup;
+  myForm: FormGroup;
 
-  constructor(private dataService: DataService, private fb: FormBuilder) {
+  constructor(private dataService: DataService, private fb: FormBuilder, private auth: AuthService) {
+
+    this.auth.locations1$.subscribe(locations => {
+      this.loc = locations;
+      // Оновлення інтерфейсу користувача з оновленими даними про локації
+    });
+
 
 
     this.myForm = this.fb.group({
-      location: this.fb.control('', [Validators.required,
+      name: this.fb.control('', [Validators.required,
         Validators.minLength(3),
         Validators.maxLength(30),
         Validators.pattern(/^[a-zA-Z _а-яА-ЯіІїЇєЄ]+$/),
         (control: AbstractControl) => {
           const value = control.value.trim();
-          const exists = this.loc.some(e => e.value === value);
-          return exists ? { duplicate: true } : null;
+          const exists = this.loc.some((e: { name: any; }) => e.name === value);
+          return exists ? {duplicate: true} : null;
         }
       ]),
     });
   }
 
+
   onSubmit() {
     if (this.myForm.valid) {
-      this.dataService.addItemToLocations(this.myForm.controls['location'].value);
+      console.log(this.myForm.value.name)
+      // this.auth.createLocations(this.myForm.value.name);
+      this.auth.fetchCreateLocation(this.myForm.value.name);
+      // console.log(this.myForm.value.name)
+      // this.dataService.addItemToLocations(this.myForm.controls['location'].value);
     }
   }
 }

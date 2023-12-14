@@ -5,6 +5,7 @@ import {NewLocationComponent} from "../../../shared/new-location/new-location.co
 import {NewSensorComponent} from "../../../shared/new-sensor/new-sensor.component";
 import {NewRoomComponent} from "../../../shared/new-room/new-room.component";
 import {AuthService} from "../../../../services/auth.service";
+import expandToHashMap from "@popperjs/core/lib/utils/expandToHashMap";
 
 interface location {
   value: string;
@@ -17,16 +18,25 @@ interface location {
 export class ProfileComponent implements OnInit {
   constructor(public dialog: MatDialog,private authService: AuthService) { }
 
-  logout() {
-    this.authService.logout();
-  }
-  user: any;
-  async getUserData() {
-    this.user = await this.authService.getUserData();
+user:any;
+  Username: any;
+  Email: any;
+  FLName: any;
+  getUserData() {
+    let user  = localStorage.getItem('User')
+    // @ts-ignore
+    this.Username= JSON.parse(user).username
+    // @ts-ignore
+    this.Email= JSON.parse(user).email
+    // @ts-ignore
+    this.FLName= JSON.parse(user).username
+
   }
 
   ngOnInit() {
-    this.getUserData();
+    setTimeout(() => {
+      this.getUserData();
+    }, 500);
   }
   locations: location[] = [
     {value: 'Підвал'},
@@ -56,4 +66,6 @@ export class ProfileComponent implements OnInit {
       width: '330px', height:'280px'
     });
   }
+
+  protected readonly expandToHashMap = expandToHashMap;
 }

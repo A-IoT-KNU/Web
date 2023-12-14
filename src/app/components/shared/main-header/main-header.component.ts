@@ -3,6 +3,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {AuthService} from "../../../services/auth.service";
 import {DataService} from "../../../services/data.service";
 import {NewLocationComponent} from "../new-location/new-location.component";
+import {forkJoin, of, switchMap} from "rxjs";
 
 @Component({
   selector: 'app-main-header',
@@ -11,25 +12,55 @@ import {NewLocationComponent} from "../new-location/new-location.component";
 })
 export class MainHeaderComponent implements OnInit {
 
-  async getUserData() {
-    this.user = await this.authService.getUserData();
+ locations:any;
+ isLocation:boolean = false;
+ Username:any;
+  ngOnInit() {
+
+    this.authService.locations1$.subscribe(data => {
+      this.locations = data;
+      this.isLocation = this.locations.length>0;
+    })
+    this.authService.fetchGetLocation();
+    this.isLocation = this.locations.length>0;
+
+   this.authService.fetchGetClientInfo();
+    setTimeout(() => {
+      this.getUserData();
+    }, 500);
+    // this.getUserData()
+
   }
 
-  ngOnInit(): void {
+  getUserData() {
+    let user  = localStorage.getItem('User')
+    // @ts-ignore
+    this.Username= JSON.parse(user).username
+  }
 
-    this.getUserData();
+  // ngOnInit(): void {
+  //   this.authService.locations$.subscribe(locations => {
+  //     this.locations = locations;
+  //     this.isLocation = this.locations != null;
+  //     // Оновлення інтерфейсу користувача з оновленими даними про локації
+  //   });
+  //
+  //   forkJoin([this.authService.getLocations()])
+  //     .subscribe(([locations]) => {
+  //       this.locations = locations;
+  //       this.isLocation = this.locations != null;
+  //     });
+  //
+  //   this.isLocation = this.locations != null;
+  //   console.log(this.isLocation);
+  // }
 
 
-    this.locations = this.dataService.getLocations();
-    this.dataService.getLocationsSubject().subscribe(locations => {
-      this.locations = locations;
-    });
 
+  constructor(public dialog: MatDialog, private authService: AuthService) {
 
   }
-  constructor(public dialog: MatDialog, private authService: AuthService, private dataService: DataService) {
-  }
-  locations: any;
+
   user: any;
 
   logout() {
@@ -42,5 +73,6 @@ export class MainHeaderComponent implements OnInit {
     });
 
   }
+
 
 }

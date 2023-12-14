@@ -67,7 +67,10 @@
               "browserTarget": "Web:build:production"
             },
             "development": {
-              "browserTarget": "Web:build:development"
+              "browserTarget": "Web:build:development",
+              "ssl": true,
+              "sslKey": "localhost.key",
+              "sslCert": "localhost.crt"
             }
           },
           "defaultConfiguration": "development"

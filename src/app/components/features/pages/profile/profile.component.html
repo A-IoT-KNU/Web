@@ -1,14 +1,16 @@
 <div class="mainContent">
   <div class="userInformation">
-    <h3>Електронна пошта</h3>
-    <h4 *ngIf="user">{{user.email}}</h4>
-    <h4 *ngIf="!user">myemail123@gmail.com</h4>
-    <h3>Ім'я користувача</h3>
-    <h4 *ngIf="user">{{user.username}}</h4>
-    <h4 *ngIf="!user">Username</h4>
-    <h3>Прізвище Ім'я</h3>
-    <h4 *ngIf="user">{{user.lastName}} {{user.firstName}}</h4>
-    <h4 *ngIf="!user">Last name First name</h4>
+    <div>    <h3>Електронна пошта : {{Email}}</h3>
+      <h4 *ngIf="user">{{user.email}}</h4>
+      <!--    <h4 *ngIf="!user">myemail123@gmail.com</h4>-->
+      <h3>Ім'я користувача : {{Username}}</h3>
+      <h4 *ngIf="user">{{user.username}}</h4>
+      <!--    <h4 *ngIf="!user">Username</h4>-->
+<!--      <h3>Прізвище Ім'я &nbsp;&nbsp; : {{FLName}}</h3>-->
+<!--      <h4 *ngIf="user">{{user.lastName}} {{user.firstName}}</h4>-->
+      <!--    <h4 *ngIf="!user">Last name First name</h4>-->
+    </div>
+
   </div>
 </div>
 
